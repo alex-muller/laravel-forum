@@ -13,13 +13,17 @@ trait RecordsActivity
 {
     protected static function bootRecordsActivity()
     {
-
         if (auth()->guest()) return;
+
         foreach (static::getRecordEvents() as $event){
             static::$event(function($thread) use ($event){
                 $thread->recordActivity($event);
             });
         }
+
+        static::deleting(function ($model){
+            $model->activity()->delete();
+        });
     }
 
     protected static function getRecordEvents()
