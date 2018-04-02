@@ -3617,3 +3617,8 @@
 127.0.0.1 - - [01/Apr/2018:00:05:56 +0300] "GET /favicon.ico HTTP/1.1" 200 295
 127.0.0.1 - - [01/Apr/2018:00:05:55 +0300] "GET /threads/saepe/2/replies?page=1 HTTP/1.1" 200 2033
 127.0.0.1 - - [01/Apr/2018:00:05:56 +0300] "GET /fonts/vendor/bootstrap-sass/bootstrap/glyphicons-halflings-regular.woff2?448c34a56d699c29117adc64c43affeb HTTP/1.1" 200 18290
+127.0.0.1 - - [02/Apr/2018:16:50:03 +0300] "GET /threads HTTP/1.1" 200 15275
+127.0.0.1 - - [02/Apr/2018:16:50:05 +0300] "GET /css/app.css HTTP/1.1" 200 21961
+127.0.0.1 - - [02/Apr/2018:16:50:05 +0300] "GET /_debugbar/assets/javascript?v=1520325331 HTTP/1.1" 200 370901
+127.0.0.1 - - [02/Apr/2018:16:50:05 +0300] "GET /_debugbar/assets/stylesheets?v=1520325331 HTTP/1.1" 200 120352
+127.0.0.1 - - [02/Apr/2018:16:50:05 +0300] "GET /js/app.js HTTP/1.1" 200 389886
