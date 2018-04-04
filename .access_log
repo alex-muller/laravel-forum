@@ -3963,3 +3963,17 @@
 127.0.0.1 - - [04/Apr/2018:10:53:16 +0300] "GET /threads HTTP/1.1" 500 167297
 127.0.0.1 - - [04/Apr/2018:10:53:49 +0300] "GET /threads HTTP/1.1" 200 15020
 127.0.0.1 - - [04/Apr/2018:10:53:50 +0300] "GET /favicon.ico HTTP/1.1" 200 295
+127.0.0.1 - - [04/Apr/2018:14:43:52 +0300] "GET /login HTTP/1.1" 200 10611
+127.0.0.1 - - [04/Apr/2018:14:43:53 +0300] "GET /css/app.css HTTP/1.1" 200 21962
+127.0.0.1 - - [04/Apr/2018:14:43:53 +0300] "GET /js/app.js HTTP/1.1" 200 390214
+127.0.0.1 - - [04/Apr/2018:14:43:56 +0300] "POST /login HTTP/1.1" 302 1404
+127.0.0.1 - - [04/Apr/2018:14:43:57 +0300] "GET /home HTTP/1.1" 200 13192
+127.0.0.1 - - [04/Apr/2018:14:43:58 +0300] "GET /profiles/Alex/notifications HTTP/1.1" 200 1422
+127.0.0.1 - - [04/Apr/2018:14:43:58 +0300] "GET /fonts/vendor/bootstrap-sass/bootstrap/glyphicons-halflings-regular.woff2?448c34a56d699c29117adc64c43affeb HTTP/1.1" 304 181
+127.0.0.1 - - [04/Apr/2018:14:43:59 +0300] "GET /threads HTTP/1.1" 200 15797
+127.0.0.1 - - [04/Apr/2018:14:44:00 +0300] "GET /profiles/Alex/notifications HTTP/1.1" 200 1424
+127.0.0.1 - - [04/Apr/2018:14:44:03 +0300] "GET /threads/saepe/2 HTTP/1.1" 200 13511
+127.0.0.1 - - [04/Apr/2018:14:44:04 +0300] "GET /profiles/Alex/notifications HTTP/1.1" 200 1428
+127.0.0.1 - - [04/Apr/2018:14:44:04 +0300] "GET /threads/saepe/2/replies?page=1 HTTP/1.1" 200 3602
+127.0.0.1 - - [04/Apr/2018:14:44:06 +0300] "GET /threads HTTP/1.1" 200 15832
+127.0.0.1 - - [04/Apr/2018:14:44:07 +0300] "GET /profiles/Alex/notifications HTTP/1.1" 200 1434
