@@ -41,6 +41,10 @@
             flash('Your reply has been posted.');
             this.$emit('created', response.data)
           })
+          .catch(error => {
+            console.log(error.response);
+            flash(error.response.data, 'danger')
+          })
       }
     }
   }
