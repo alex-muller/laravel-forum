@@ -2,8 +2,7 @@
 
 namespace App;
 
-use App\Events\ThreadHasNewReply;
-use App\Notifications\ThreadWasUpdated;
+use App\Events\ThreadReceivedNewReply;
 use Illuminate\Database\Eloquent\Model;
 
 class Thread extends Model
@@ -20,8 +19,8 @@ class Thread extends Model
     {
         parent::boot();
 
-        static::deleting(function($thread){
-          $thread->replies->each->delete();
+        static::deleting(function ($thread) {
+            $thread->replies->each->delete();
         });
     }
 
@@ -54,17 +53,9 @@ class Thread extends Model
     {
         $reply = $this->replies()->create($reply);
 
-        $this->notifySubscribers($reply);
+        event(new ThreadReceivedNewReply($reply));
 
         return $reply;
-    }
-
-    public function notifySubscribers($reply)
-    {
-        $this->subscriptions
-            ->where('user_id', '!=', $reply->user_id)
-            ->each
-            ->notify($reply);
     }
 
     public function scopeFilter($query, $filters)
@@ -96,8 +87,8 @@ class Thread extends Model
     public function getIsSubscribedToAttribute()
     {
         return $this->subscriptions()
-            ->where('user_id', auth()->id())
-            ->exists();
+                    ->where('user_id', auth()->id())
+                    ->exists();
     }
 
     public function hasUpdatesFor($user)
