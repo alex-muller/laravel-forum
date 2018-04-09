@@ -12,8 +12,11 @@
           <div class="panel panel-default">
             <div class="panel-heading">
               <div class="level">
-              <span class="flex"><a href="/profiles/{{ $thread->creator->name }}">{{ $thread->creator->name }}</a> posted:
-               {{ $thread->title }}</span>
+                <img src="/storage/{{ $thread->creator->avatar() }}" alt="{{ $thread->creator->name }}" width="25" height="25" class="mr-1">
+                <span class="flex">
+                  <a href="/profiles/{{ $thread->creator->name }}">{{ $thread->creator->name }}</a> posted:
+                  {{ $thread->title }}
+                </span>
                 @can('update', $thread)
                   <form action="{{ $thread->path() }}" method="POST">
                     {{ csrf_field() }}
