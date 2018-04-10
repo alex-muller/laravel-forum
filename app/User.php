@@ -48,9 +48,10 @@ class User extends Authenticatable
         return $this->hasMany(Activity::class);
     }
 
-    public function avatar()
+    public function getAvatarPathAttribute($avatar)
     {
-        return $this->avatar_path ?:  'avatars/default.jpg';
+        $avatar = '/storage/' . ($avatar ?: 'avatars/default.jpg');
+        return $avatar;
     }
 
     public function visitedThreadCacheKey($thread)
