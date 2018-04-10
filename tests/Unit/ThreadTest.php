@@ -143,19 +143,17 @@ class ThreadTest extends TestCase
     {
         $thread = make('App\Thread', ['id' => 1]);
 
-        $thread->resetVisits();
+        $thread->visits()->reset();
 
-        $this->assertSame(0, $thread->visits());
+        $this->assertSame(0, $thread->visits()->count());
 
-        $thread->recordVisit();
+        $thread->visits()->record();
 
-        $this->assertEquals(1, $thread->visits());
+        $this->assertEquals(1, $thread->visits()->count());
+//
+//        $thread->recordVisit();
+//        $this->assertEquals(2, $thread->visits());
 
-        $thread->recordVisit();
-        $this->assertEquals(2, $thread->visits());
-
-
-        $thread->visits();
     }
 
 }
