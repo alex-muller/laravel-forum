@@ -33,6 +33,10 @@ class User extends Authenticatable
         'password', 'remember_token', 'email',
     ];
 
+    protected $casts = [
+        'confirmed' => 'boolean'
+    ];
+
     public function threads()
     {
         return $this->hasMany(Thread::class)->latest();
@@ -46,6 +50,13 @@ class User extends Authenticatable
     public function activity()
     {
         return $this->hasMany(Activity::class);
+    }
+
+    /** Confirm that the user confirmed his account via email */
+    public function confirm()
+    {
+        $this->confirmed = true;
+        $this->save();
     }
 
     public function getAvatarPathAttribute($avatar)
