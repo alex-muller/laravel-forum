@@ -1,5 +1,5 @@
 <template>
-  <div :id="'reply-'+id" class="panel panel-default">
+  <div :id="'reply-'+id" class="panel" :class="isBest ? 'panel-success' : 'panel-default'">
     <div class="panel-heading">
       <div class="level">
         <h5 class="flex">
@@ -24,9 +24,12 @@
       <div v-else v-html="body"></div>
     </div>
     <!--@can('update', $reply)-->
-    <div class="panel-footer level" v-if="canUpdate">
-      <button @click="editing = true" class="btn btn-xs mr-1">Edit</button>
-      <button @click="destroy" class="btn btn-xs btn-danger mr-1">Delete</button>
+    <div class="panel-footer level">
+      <div v-if="canUpdate">
+        <button @click="editing = true" class="btn btn-xs mr-1">Edit</button>
+        <button @click="destroy" class="btn btn-xs btn-danger mr-1">Delete</button>
+      </div>
+      <button @click="markBestReply" class="btn btn-xs btn-default ml-a" v-show="!isBest">Best Reply?</button>
     </div>
     <!--@endcan-->
   </div>
@@ -44,7 +47,8 @@
       return {
         editing: false,
         id: this.data.id,
-        body: this.data.body
+        body: this.data.body,
+        isBest: false
       }
     },
     computed: {
@@ -73,6 +77,9 @@
         axios.delete('/replies/' + this.data.id);
 
         this.$emit('deleted', this.data.id);
+      },
+      markBestReply() {
+        this.isBest = true;
       }
     }
   }
