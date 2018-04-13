@@ -23,15 +23,15 @@
       </div>
       <div v-else v-html="body"></div>
     </div>
-    <!--@can('update', $reply)-->
+
     <div class="panel-footer level">
-      <div v-if="canUpdate">
+      <div v-if="authorize('updateReply', reply)">
         <button @click="editing = true" class="btn btn-xs mr-1">Edit</button>
         <button @click="destroy" class="btn btn-xs btn-danger mr-1">Delete</button>
       </div>
       <button @click="markBestReply" class="btn btn-xs btn-default ml-a" v-show="!isBest">Best Reply?</button>
     </div>
-    <!--@endcan-->
+
   </div>
 </template>
 <script>
@@ -48,18 +48,13 @@
         editing: false,
         id: this.data.id,
         body: this.data.body,
-        isBest: false
+        isBest: false,
+        reply: this.data
       }
     },
     computed: {
       ago(){
         return moment(this.data.created_at).fromNow() + '...';
-      },
-      signedIn(){
-        return window.App.signedIn;
-      },
-      canUpdate() {
-        return this.authorize(user => this.data.user_id == user.id)
       }
     },
     methods: {
