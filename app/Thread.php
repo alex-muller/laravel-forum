@@ -5,6 +5,7 @@ namespace App;
 use App\Events\ThreadReceivedNewReply;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Redis;
+use Mockery\Exception;
 
 class Thread extends Model
 {
@@ -50,17 +51,24 @@ class Thread extends Model
     }
 
     /**
-     * @param array $reply
+     * Add a reply to the thread
      *
+     * @param array $reply*
      * @return Reply
      */
     public function addReply($reply)
     {
+
         $reply = $this->replies()->create($reply);
 
         event(new ThreadReceivedNewReply($reply));
 
         return $reply;
+    }
+
+    public function lock()
+    {
+        $this->update(['locked' => true]);
     }
 
     public function scopeFilter($query, $filters)
