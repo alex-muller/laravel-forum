@@ -60725,8 +60725,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       repliesCount: this.thread.replies_count,
       locked: this.thread.locked,
-      editing: false
+      editing: false,
+      title: this.thread.title,
+      body: this.thread.body,
+      form: {}
     };
+  },
+  created: function created() {
+    this.resetForm();
   },
 
   methods: {
@@ -60736,6 +60742,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       axios[this.locked ? 'delete' : 'post']('/locked-threads/' + this.thread.slug).then(function () {
         _this.locked = !_this.locked;
       });
+    },
+    update: function update() {
+      var _this2 = this;
+
+      var uri = '/threads/' + this.thread.channel.slug + '/' + this.thread.slug;
+      axios.patch(uri, this.form).then(function () {
+        _this2.editing = false;
+        _this2.title = _this2.form.title;
+        _this2.body = _this2.form.body;
+
+        flash('Your thread has been updated.');
+      });
+    },
+    resetForm: function resetForm() {
+      this.form = {
+        title: this.thread.title,
+        body: this.thread.body
+      };
+
+      this.editing = false;
     }
   }
 });
